@@ -1,0 +1,30 @@
+@import "./base.css";
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+#app {
+  position: absolute;
+  display: flex;
+}
+
+#blocker{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 51, 51,0.25);
+  position: absolute;
+  z-index: 99;
+}
+
+#instructions{
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  color: #fcfcfc;
+  font-size: 200%;
+}
+canvas{
+  position: absolute;
+}
