@@ -1,26 +1,53 @@
 <template>
-  <div class="home">
-    <div class="scenesContanier">
-        <div class="scenes" id="classroom" @click="goClass">ClassRoom_01</div>
+    <div class="home">
+        <!-- <div class="scenesContanier">
+            <div class="scenes" id="test" @click="gotest">test</div>
+        </div> -->
+        <div class="scenesContanier">
+            <div class="scenes" id="classroom" @click="goclass">classroom</div>
+        </div>
+        <div class="scenesContanier">
+            <div class="scenes" id="restaurant" @click="gorest">restaurant</div>
+        </div>
+        <div class="scenesContanier">
+            <div class="scenes" id="MRT" @click="goMRT">MRT</div>
+        </div>
+        <div class="scenesContanier">
+            <div class="scenes" id="supermarket" @click="gosuper">supermarket</div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-    import { useRouter } from 'vue-router';
-    export default {
-        setup(){
-            const router = useRouter()
-            function goClass(){
-                router.push('/classroom')
-                console.log("放超市")
-            }
-            
-            return{
-                goClass
-            }
+import { useRouter } from 'vue-router';
+export default {
+    setup() {
+        const router = useRouter()
+        function gotest() {
+            router.push('/test')
+            console.log("放超市")
+        }
+        function goclass() {
+            router.push('/classroom')
+        }
+        function gorest() {
+            router.push('/restaurant')
+        }
+        function goMRT() {
+            router.push('/MRT')
+        }
+        function gosuper() {
+            router.push('/supermarket')
+        }
+        return {
+            gotest,
+            goclass,
+            gorest,
+            goMRT,
+            gosuper
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
