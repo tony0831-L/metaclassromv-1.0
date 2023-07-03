@@ -1,12 +1,12 @@
 import * as THREE from 'three'
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import * as CANNON from '../../node_modules/cannon-es/dist/cannon-es.js'
 import { PointerLockControlsCannon } from './libs/PointerLockControlsCannon.js'
 import { Vec3 } from 'cannon-es';
 
 
-export default class Three{
-    constructor(){
+export default class Three {
+    constructor() {
         try {
             this.init()
         } catch (error) {
@@ -14,7 +14,7 @@ export default class Three{
         }
     }
 
-    init(){
+    init() {
         this.initThree()
         this.loadModels()
         this.setLight()
@@ -43,7 +43,7 @@ export default class Three{
 
         // Camera
         this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-        this.camera.position.set(0,0,0)
+        this.camera.position.set(0, 0, 0)
         this.camera.add(this.listener);
 
         // Scene
@@ -53,29 +53,125 @@ export default class Three{
         this.renderer = new THREE.WebGLRenderer({ antialias: true })//渲染器
         this.renderer.shadowMap.enabled = true // 設定需渲染陰影效果
         this.renderer.shadowMap.type = 2
-        this.renderer.setSize( window.innerWidth, window.innerHeight )
+        this.renderer.setSize(window.innerWidth, window.innerHeight)
         this.app.appendChild(this.renderer.domElement)
 
         // Generic material
-        this.material = new THREE.MeshLambertMaterial({transparent:true,opacity :0})
+        this.material = new THREE.MeshLambertMaterial({ transparent: true, opacity: 0 })
 
         window.addEventListener('resize', this.onWindowResize(this))
+
+        //For watching Cannon Body 
+        function watchtable(sce) {
+            const tableMat = new THREE.MeshBasicMaterial({
+                color: 0x02df82,
+                wireframe: true
+            })
+            const studenttableGeo1 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable1 = new THREE.Mesh(studenttableGeo1, tableMat)
+            studenttable1.position.set(-1.35, 0, 0)
+            sce.add(studenttable1)
+            const studenttableGeo2 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable2 = new THREE.Mesh(studenttableGeo2, tableMat)
+            studenttable2.position.set(0, 0, 0)
+            sce.add(studenttable2)
+            const studenttableGeo3 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable3 = new THREE.Mesh(studenttableGeo3, tableMat)
+            studenttable3.position.set(1.45, 0, 0)
+            sce.add(studenttable3)
+            const studenttableGeo4 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable4 = new THREE.Mesh(studenttableGeo4, tableMat)
+            studenttable4.position.set(2.9, 0, 0)
+            sce.add(studenttable4)
+            const studenttableGeo5 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable5 = new THREE.Mesh(studenttableGeo5, tableMat)
+            studenttable5.position.set(4.4, 0, 0)
+            sce.add(studenttable5)
+            const studenttableGeo6 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable6 = new THREE.Mesh(studenttableGeo6, tableMat)
+            studenttable6.position.set(-1.35, 0, -3)
+            sce.add(studenttable6)
+            const studenttableGeo7 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable7 = new THREE.Mesh(studenttableGeo7, tableMat)
+            studenttable7.position.set(0, 0, -3)
+            sce.add(studenttable7)
+            const studenttableGeo8 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable8 = new THREE.Mesh(studenttableGeo8, tableMat)
+            studenttable8.position.set(1.45, 0, -3)
+            sce.add(studenttable8)
+            const studenttableGeo9 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable9 = new THREE.Mesh(studenttableGeo9, tableMat)
+            studenttable9.position.set(2.9, 0, -3)
+            sce.add(studenttable9)
+            const studenttableGeo10 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable10 = new THREE.Mesh(studenttableGeo10, tableMat)
+            studenttable10.position.set(4.4, 0, -3)
+            sce.add(studenttable10)
+            const studenttableGeo11 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable11 = new THREE.Mesh(studenttableGeo11, tableMat)
+            studenttable11.position.set(-1.35, 0, 3)
+            sce.add(studenttable11)
+            const studenttableGeo12 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable12 = new THREE.Mesh(studenttableGeo12, tableMat)
+            studenttable12.position.set(0, 0, 3)
+            sce.add(studenttable12)
+            const studenttableGeo13 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable13 = new THREE.Mesh(studenttableGeo13, tableMat)
+            studenttable13.position.set(1.45, 0, 3)
+            sce.add(studenttable13)
+            const studenttableGeo14 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable14 = new THREE.Mesh(studenttableGeo14, tableMat)
+            studenttable14.position.set(2.9, 0, 3)
+            sce.add(studenttable14)
+            const studenttableGeo15 = new THREE.BoxGeometry(.0001, 3, 2)
+            const studenttable15 = new THREE.Mesh(studenttableGeo15, tableMat)
+            studenttable15.position.set(4.4, 0, 3)
+            sce.add(studenttable15)
+            const teachertableGeo = new THREE.BoxGeometry(.0001, 3, 2)
+            const teachertable = new THREE.Mesh(teachertableGeo, tableMat)
+            teachertable.position.set(-2.2, 0, 3)
+            sce.add(teachertable)
+        }
+        function watchwall(sce) {
+            const wallMat = new THREE.MeshBasicMaterial({
+                color: 0xd3a4ff,
+                wireframe: true
+            })
+            const frontwallGeo = new THREE.BoxGeometry(.0001, 4, 7.5)
+            const frontwall = new THREE.Mesh(frontwallGeo, wallMat)
+            frontwall.position.set(-4, 1.5, 0)
+            sce.add(frontwall)
+            const backwallGeo = new THREE.BoxGeometry(.0001, 4, 7.5)
+            const backwall = new THREE.Mesh(backwallGeo, wallMat)
+            backwall.position.set(5.8, 1.5, 0)
+            sce.add(backwall)
+            const rightwallGeo = new THREE.BoxGeometry(9.5, 3.2, .0001)
+            const rightwall = new THREE.Mesh(rightwallGeo, wallMat)
+            rightwall.position.set(1, 1.5, -3.7)
+            sce.add(rightwall)
+            const leftwallGeo = new THREE.BoxGeometry(9.5, 3.2, .0001)
+            const leftwall = new THREE.Mesh(leftwallGeo, wallMat)
+            leftwall.position.set(1, 1.5, 3.7)
+            sce.add(leftwall)
+        }
+        // watchtable(this.scene);
+        // watchwall(this.scene);
     }
 
-    setLight(){
-        this.light = new THREE.AmbientLight( 0xffffff, .8 ); // 環境光
-        this.scene.add( this.light );
+    setLight() {
+        this.light = new THREE.AmbientLight(0xffffff, .8); // 環境光
+        this.scene.add(this.light);
 
-        this.light = new THREE.DirectionalLight( 0xffffff, .1 );//平行光
-        this.light.position.set(0,30,-100);
+        this.light = new THREE.DirectionalLight(0xffffff, .1);//平行光
+        this.light.position.set(0, 30, -100);
         this.light.castShadow = true;
-        this.scene.add( this.light );
+        this.scene.add(this.light);
 
-        this.light = new THREE.SpotLight( 0xffffff, 1 );//平行光
-        this.light.position.set(32.0685,77.17,-59.164);
+        this.light = new THREE.SpotLight(0xffffff, 1);//平行光
+        this.light.position.set(32.0685, 77.17, -59.164);
         this.light.castShadow = true;
         this.light.decay = 2;
-        this.scene.add( this.light );
+        this.scene.add(this.light);
     }
 
     onWindowResize(three) {
@@ -84,47 +180,50 @@ export default class Three{
         three.renderer.setSize(window.innerWidth, window.innerHeight)
     }
 
-    loadModels(){
+    loadModels() {
         this.npc = [];
-        let url = './src/model/'   
-        this.modelLoader(url+'place/',{x:1,y:1,z:1},{x:0,y:0,z:0},{x:0,y:0,z:0},"building","place");
+        let url = './src/model/'
+        this.modelLoader(url + 'place/', { x: 1, y: 1, z: 1 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }, "building", "place");
     }
 
-    modelLoader(path,size,position,rotation,type,name){
+    modelLoader(path, size, position, rotation, type, name) {
+
+        //For progress Bar
         const loadingManger = new THREE.LoadingManager()
         const progressBar = document.getElementById('progress-bar')
         // loadingManger.onStart = function(url, item, total){
         //     console.log('Start loading : '+url)
         // }
-        loadingManger.onProgress = function(url, loaded, total){
-            progressBar.value = (loaded/total) * 100
-            console.log('Start loading : '+url)
+        loadingManger.onProgress = function (url, loaded, total) {
+            progressBar.value = (loaded / total) * 100
+            console.log('Start loading : ' + url)
         }
         const loadingBar = document.querySelector('.loading-bar')
 
-        loadingManger.onLoad= function(){
+        loadingManger.onLoad = function () {
             loadingBar.style.display = 'none'
         }
         // loadingManger.onError = function(url){
         //     console.error('Got a problem loading : '+url)
         // }
+
         this.loading = true;
         this.loader = new GLTFLoader(loadingManger).setPath(path);
-        this.loader.load('classroom.glb',(gltf)=>{
-            gltf.scene.scale.set(size.x,size.y,size.z);//設定大小
-            gltf.scene.position.set(position.x,position.y,position.z);//設定位置
+        this.loader.load('classroom.glb', (gltf) => {
+            gltf.scene.scale.set(size.x, size.y, size.z);//設定大小
+            gltf.scene.position.set(position.x, position.y, position.z);//設定位置
             if (rotation) {
-                gltf.scene.rotation.y += rotation.y ;
+                gltf.scene.rotation.y += rotation.y;
             }
             gltf.scene.name = name;
             let mixer = {
-                "name":name,
-                "animes":[]
-            }; 
+                "name": name,
+                "animes": []
+            };
             switch (type) {
                 case "npc":
                     mixer.mixer = new THREE.AnimationMixer(gltf.scene.children[0]);
-                    gltf.animations.forEach(e=>{
+                    gltf.animations.forEach(e => {
                         if (e.name == 'Idle') {
                             mixer.animes.push(mixer.mixer.clipAction(e).setDuration(e.duration).play())
                         }
@@ -165,7 +264,7 @@ export default class Three{
         solver.tolerance = 0.1
         this.world.solver = new CANNON.SplitSolver(solver)
 
-        this.world.gravity.set(0,-50, 0)
+        this.world.gravity.set(0, -50, 0)
 
         // Create a slippery material (friction coefficient = 0.0)
         this.physicsMaterial = new CANNON.Material('physics')
@@ -178,7 +277,7 @@ export default class Three{
         this.world.addContactMaterial(physics_physics)
 
         // Create the user collision sphere
-        this.sphereShape = new CANNON.Sphere(1.5)
+        this.sphereShape = new CANNON.Sphere(0.5)
         this.sphereBody = new CANNON.Body({ mass: 5, material: this.physicsMaterial })
         this.sphereBody.addShape(this.sphereShape)
         this.sphereBody.position.set(1.96, 2, -1.97)
@@ -189,13 +288,14 @@ export default class Three{
         const groundShape = new CANNON.Plane()
         const groundBody = new CANNON.Body({ mass: 0, material: this.physicsMaterial })
         groundBody.addShape(groundShape)
+        groundBody.position.set(0, 1, 0)
         groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0)
         console.log(groundBody.position)
         this.world.addBody(groundBody)
     }
 
     initPointerLock() {
-        this.controls = new PointerLockControlsCannon(this.camera, this.sphereBody )
+        this.controls = new PointerLockControlsCannon(this.camera, this.sphereBody)
         this.scene.add(this.controls.getObject())
         this.position = this.controls.getObject().position
 
@@ -215,147 +315,229 @@ export default class Three{
             document.getElementById('blocker').style.display = null
         })
     }
-    
-    addWall(){
+
+
+    addWall() {
         let three = this
-        function add1(){
-            const halfExtents = new Vec3(3.5,3,.0001)
-            const xy = new Vec3(8.8,1.4,11)
+        function addst1() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(-1.35, 0, 0)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+
+        }
+        function addst2() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(0, 0, 0)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add2(){
-            const halfExtents = new Vec3(.0001,3,10)
-            const xy = new Vec3(12.8,1.5,0)
+        function addst3() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(1.45, 0, 0)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add3(){
-            const halfExtents = new Vec3(.0001,3,6)
-            const xy = new Vec3(5.2,1.4,7)
+        function addst4() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(2.9, 0, 0)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add4(){
-            const halfExtents = new Vec3(3.5,3,.0001)
-            const xy = new Vec3(1,1.4,3)
+        function addst5() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(4.4, 0, 0)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add5(){
-            const halfExtents = new Vec3(.0001,3,1.4)
-            const xy = new Vec3(5.2,1.4,-4)
+        function addst6() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(-1.35, 0, -3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add6(){
-            const halfExtents = new Vec3(5,3,.0001)
-            const xy = new Vec3(-1,1.4,-5)
+        function addst7() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(0, 0, -3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add7(){
-            const halfExtents = new Vec3(3.5,3,.0001)
-            const xy = new Vec3(8.8,1.4,-10)
+        function addst8() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(1.45, 0, -3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add8(){
-            const halfExtents = new Vec3(.0001,3,6)
-            const xy = new Vec3(-7.2,1.4,-2)
+        function addst9() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(2.9, 0, -3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add9(){
-            const halfExtents = new Vec3(.0001,3,10)
-            const xy = new Vec3(12.8,1.5,0)
+        function addst10() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(4.4, 0, -3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add10(){
-            const halfExtents = new Vec3(.0001,3,3)
-            const xy = new Vec3(4,1.5,-10)
+        function addst11() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(-1.35, 0, 3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add11(){
-            const halfExtents = new Vec3(15,.0001,15)
-            const xy = new Vec3(0,4,0)
+        function addst12() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(0, 0, 3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function add12(){
-            const halfExtents = new Vec3(3.5,3,.0001)
-            const xy = new Vec3(-3,1.4,4)
+        function addst13() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(1.45, 0, 3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
-        } 
-        add1();
-        add2();
-        add3();
-        add4();
-        add5();
-        add6();
-        add7();
-        add8();
-        add9();
-        add10();
-        add11();
-        add12();  
+        }
+        function addst14() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(2.9, 0, 3)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addst15() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(4.4, 0, 3)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addtt() {
+            const halfExtents = new Vec3(.00005, 1.5, 1)
+            const xy = new Vec3(-2.2, 0, 3)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addfw() {
+            const halfExtents = new Vec3(.00005, 2, 3.75)
+            const xy = new Vec3(-4, 1.5, 0)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addbw() {
+            const halfExtents = new Vec3(.00005, 2, 3.75)
+            const xy = new Vec3(5.8, 1.5, 0)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addrw() {
+            const halfExtents = new Vec3(4.75, 1.6, .00005)
+            const xy = new Vec3(1, 1.5, -3.7)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addlw() {
+            const halfExtents = new Vec3(4.75, 1.6, .00005)
+            const xy = new Vec3(1, 1.5, 3.7)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        addst1();
+        addst2();
+        addst3();
+        addst4();
+        addst5();
+        addst6();
+        addst7();
+        addst8();
+        addst9();
+        addst10();
+        addst11();
+        addst12();
+        addst13();
+        addst14();
+        addst15();
+        addtt();
+        addfw();
+        addbw();
+        addrw();
+        addlw();
     }
 
-    render(){
+    render() {
         this.renderer.render(this.scene, this.camera)
     }
 
     animate() {
         const dt = 0.01280000000074466;
-        this.renderer.setAnimationLoop( this.animate.bind((this)) )
+        this.renderer.setAnimationLoop(this.animate.bind((this)))
         this.world.step(this.timeStep, dt)
         this.controls.update(dt);
-        this.mixers.forEach(e=>{
+        this.mixers.forEach(e => {
             e.mixer.update(dt)
         })
         this.render()
     }
 
-    getObj(){
+    getObj() {
         return this
     }
 }
