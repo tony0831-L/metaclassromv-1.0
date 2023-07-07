@@ -67,14 +67,26 @@ export default class Three {
                 color: 0xae0000,
                 wireframe: true
             })
-            const shelfGeo = new THREE.BoxGeometry(2.1, 0.1, 5)
+            const shelfGeo = new THREE.BoxGeometry(2, 0.1, 5)
             const shelf = new THREE.Mesh(shelfGeo, shelfMat)
-            shelf.position.set(-1.625, 1.25, -0.7)
+            shelf.position.set(-0.925, 1.25, -0.7)
             sce.add(shelf)
-            const freezerGeo = new THREE.BoxGeometry(1.25, 0.1, 5.7)
-            const freezer = new THREE.Mesh(freezerGeo, shelfMat)
-            freezer.position.set(3.9, 1.1, -1.45)
-            sce.add(freezer)
+            const freezerGeo1 = new THREE.BoxGeometry(.0001, 0.75, 5)
+            const freezer1 = new THREE.Mesh(freezerGeo1, shelfMat)
+            freezer1.position.set(4.75, 2, -1.675)
+            sce.add(freezer1)
+            const freezerGeo2 = new THREE.BoxGeometry(2, 0.75, .0001)
+            const freezer2 = new THREE.Mesh(freezerGeo2, shelfMat)
+            freezer2.position.set(5.75, 2, 0.875)
+            sce.add(freezer2)
+            // const freezerGeo = new THREE.BoxGeometry(0.9, 0.1, 5)
+            // const freezer = new THREE.Mesh(freezerGeo, shelfMat)
+            // freezer.position.set(6.35, 1.65, -1.675)
+            // sce.add(freezer)
+            // const freezerGeo = new THREE.BoxGeometry(0.9, 0.1, 5)
+            // const freezer = new THREE.Mesh(freezerGeo, shelfMat)
+            // freezer.position.set(6.3, 1, -1.675)
+            // sce.add(freezer)
         }
         function watchwall(sce) {
             const wallMat = new THREE.MeshBasicMaterial({
@@ -87,7 +99,7 @@ export default class Three {
             sce.add(frontwall)
             const backwallGeo = new THREE.BoxGeometry(11, 6.7, .0001)
             const backwall = new THREE.Mesh(backwallGeo, wallMat)
-            backwall.position.set(1.2, 1.9, 10.5)
+            backwall.position.set(1.2, 1.9, 10.3)
             sce.add(backwall)
             const rightwallGeo = new THREE.BoxGeometry(.0001, 6.7, 18)
             const rightwall = new THREE.Mesh(rightwallGeo, wallMat)
@@ -95,18 +107,26 @@ export default class Three {
             sce.add(rightwall)
             const leftwallGeo = new THREE.BoxGeometry(.0001, 6.7, 18)
             const leftwall = new THREE.Mesh(leftwallGeo, wallMat)
-            leftwall.position.set(-4.25, 1.9, 1.75)
+            leftwall.position.set(-4, 1.9, 1.75)
             sce.add(leftwall)
         }
-        function watchtable(sce) {
-            const tableMat = new THREE.MeshBasicMaterial({
-                color: 0x02df82,
+        function watchcounter(sce) {
+            const counterMat = new THREE.MeshBasicMaterial({
+                color: 0x5cadad,
                 wireframe: true
             })
-            const counterGeo = new THREE.BoxGeometry(0.5, 1, 4.25)
-            const counter = new THREE.Mesh(counterGeo, tableMat)
-            counter.position.set(2.25, 1.9, 6)
-            sce.add(counter)
+            const counterGeo1 = new THREE.BoxGeometry(1.25, 1, 4.5)
+            const counter1 = new THREE.Mesh(counterGeo1, counterMat)
+            counter1.position.set(2, 1.9, 5.875)
+            sce.add(counter1)
+            const counterGeo2 = new THREE.BoxGeometry(1.25, 1, 0.75)
+            const counter2 = new THREE.Mesh(counterGeo2, counterMat)
+            counter2.position.set(3.25, 1.9, 4)
+            sce.add(counter2)
+            const counterGeo3 = new THREE.BoxGeometry(1.25, 1, 1)
+            const counter3 = new THREE.Mesh(counterGeo3, counterMat)
+            counter3.position.set(3.25, 1.9, 7.625)
+            sce.add(counter3)
         }
         function watchobj(sce) {
             const objMat = new THREE.MeshBasicMaterial({
@@ -115,12 +135,16 @@ export default class Three {
             })
             const cartGeo = new THREE.BoxGeometry(1.5, 1, 2)
             const cart = new THREE.Mesh(cartGeo, objMat)
-            cart.position.set(0.25, 1.9, 4)
+            cart.position.set(-2.6, 1.9, 8.7)
             sce.add(cart)
+            const boxsGeo = new THREE.BoxGeometry(2, 1, 1.5)
+            const boxs = new THREE.Mesh(boxsGeo, objMat)
+            boxs.position.set(4.75, 2, -6.5)
+            sce.add(boxs)
         }
         // watchshelf(this.scene);
         // watchwall(this.scene);
-        // watchtable(this.scene);
+        // watchcounter(this.scene);
         // watchobj(this.scene);
     }
 
@@ -148,7 +172,7 @@ export default class Three {
 
     loadModels() {
         this.npc = [];
-        let url = './src/model/'
+        let url = './model/'
         this.modelLoader(url + 'place/', { x: 1, y: 1, z: 1 }, { x: 0, y: -1.5, z: 0 }, { x: 0, y: 0, z: 0 }, "building", "place");
     }
 
@@ -243,7 +267,7 @@ export default class Three {
         this.world.addContactMaterial(physics_physics)
 
         // Create the user collision sphere
-        this.sphereShape = new CANNON.Sphere(1.2)
+        this.sphereShape = new CANNON.Sphere(1)
         this.sphereBody = new CANNON.Body({ mass: 5, material: this.physicsMaterial })
         this.sphereBody.addShape(this.sphereShape)
         this.sphereBody.position.set(-1, 2, 7)
@@ -255,7 +279,7 @@ export default class Three {
         const groundBody = new CANNON.Body({ mass: 0, material: this.physicsMaterial })
         groundBody.addShape(groundShape)
         groundBody.quaternion.setFromEuler(-Math.PI / 2, 0, 0)
-        groundBody.position.set(0,0.3,0)
+        groundBody.position.set(0, 0.5, 0)
         console.log(groundBody.position)
         this.world.addBody(groundBody)
     }
@@ -283,17 +307,26 @@ export default class Three {
     addWall() {
         let three = this
         function addsh() {
-            const halfExtents = new Vec3(1.05, 0.05, 2.5)
-            const xy = new Vec3(-1.625, 1.25, -0.7)
+            const halfExtents = new Vec3(1, .05, 2.5)
+            const xy = new Vec3(-0.925, 1.25, -0.7)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function addfr() {
-            const halfExtents = new Vec3(0.625, 0.05, 2.85)
-            const xy = new Vec3(3.9, 1.1, -1.45)
+        function addfr1() {
+            const halfExtents = new Vec3(.00005, 0.375, 2.5)
+            const xy = new Vec3(4.75, 2, -1.675)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addfr2() {
+            const halfExtents = new Vec3(1, 0.375, .00005)
+            const xy = new Vec3(5.75, 2, 0.875)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
@@ -311,7 +344,7 @@ export default class Three {
         }
         function addbw() {
             const halfExtents = new Vec3(5.5, 3.35, .00005)
-            const xy = new Vec3(1.2, 1.9, 10.5)
+            const xy = new Vec3(1.2, 1.9, 10.3)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
@@ -329,16 +362,34 @@ export default class Three {
         }
         function addlw() {
             const halfExtents = new Vec3(.00005, 3.35, 8.25)
-            const xy = new Vec3(-4.25, 1.9, 1.75)
+            const xy = new Vec3(-4, 1.9, 1.75)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
             boxBody.position = xy
             three.world.addBody(boxBody)
         }
-        function addct() {
-            const halfExtents = new Vec3(0.25, .5, 2.175)
-            const xy = new Vec3(2.25, 1.9, 6)
+        function addct1() {
+            const halfExtents = new Vec3(.625, .5, 2.25)
+            const xy = new Vec3(2, 1.9, 5.875)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addct2() {
+            const halfExtents = new Vec3(.625, .5, .375)
+            const xy = new Vec3(3.25, 1.9, 4)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addct3() {
+            const halfExtents = new Vec3(.625, .5, .5)
+            const xy = new Vec3(3.25, 1.9, 7.625)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
@@ -346,8 +397,17 @@ export default class Three {
             three.world.addBody(boxBody)
         }
         function addca() {
-            const halfExtents = new Vec3(0.75, .5, 1)
-            const xy = new Vec3(0.25, 1.9, 4)
+            const halfExtents = new Vec3(.75, .5, 1)
+            const xy = new Vec3(-2.6, 1.9, 8.7)
+            const boxShape = new CANNON.Box(halfExtents)
+            const boxBody = new CANNON.Body({ mass: 0 })
+            boxBody.addShape(boxShape)
+            boxBody.position = xy
+            three.world.addBody(boxBody)
+        }
+        function addbx() {
+            const halfExtents = new Vec3(1, .5, .75)
+            const xy = new Vec3(4.75, 2, -6.5)
             const boxShape = new CANNON.Box(halfExtents)
             const boxBody = new CANNON.Body({ mass: 0 })
             boxBody.addShape(boxShape)
@@ -355,13 +415,17 @@ export default class Three {
             three.world.addBody(boxBody)
         }
         addsh();
-        addfr();
+        addfr1();
+        addfr2();
         addfw();
         addbw();
         addrw();
         addlw();
-        addct();
+        addct1();
+        addct2();
+        addct3();
         addca();
+        addbx();
     }
 
     render() {

@@ -182,7 +182,7 @@ export default class Three {
 
     loadModels() {
         this.npc = [];
-        let url = './src/model/'
+        let url = './model/'
         this.modelLoader(url + 'place/', { x: 1, y: 1, z: 1 }, { x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 0 }, "building", "place");
     }
 
@@ -206,7 +206,7 @@ export default class Three {
         // loadingManger.onError = function(url){
         //     console.error('Got a problem loading : '+url)
         // }
-
+        //const crglb = new URL('../assets/place/classroom.glb', import.meta.url).href
         this.loading = true;
         this.loader = new GLTFLoader(loadingManger).setPath(path);
         this.loader.load('classroom.glb', (gltf) => {
