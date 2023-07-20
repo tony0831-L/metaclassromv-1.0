@@ -173,7 +173,7 @@ export default class Three {
     loadModels() {
         this.npc = [];
         let url = './model/'
-        this.modelLoader(url + 'place/', { x: 1, y: 1, z: 1 }, { x: 0, y: -1.5, z: 0 }, { x: 0, y: 0, z: 0 }, "building", "place");
+        this.modelLoader(url, { x: 1, y: 1, z: 1 }, { x: 0, y: -1.5, z: 0 }, { x: 0, y: 0, z: 0 }, "place", "supermarket");
     }
 
 
@@ -199,7 +199,7 @@ export default class Three {
 
         this.loading = true;
         this.loader = new GLTFLoader(loadingManger).setPath(path);
-        this.loader.load('supermarket.glb', (gltf) => {
+        this.loader.load(type+'/'+name+'.glb', (gltf) => {
             gltf.scene.scale.set(size.x, size.y, size.z);//設定大小
             gltf.scene.position.set(position.x, position.y, position.z);//設定位置
             if (rotation) {
