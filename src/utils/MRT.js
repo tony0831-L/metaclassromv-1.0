@@ -152,6 +152,7 @@ export default class Three {
         this.npc = [];
         let url = './model/'
         this.modelLoader(url, { x: 3, y: 3, z: 3 }, { x: -6, y: -1.5, z: -21 }, { x: 0, y: 0, z: 0 }, "place", "MRT");
+        this.modelLoader(url, { x: 6.5, y: 6.5, z: 6.5 }, { x: -5.5, y: 3.7, z: -9.5 }, { x: 0, y: 1.5, z: 0 }, "people", "staff(breathing)");
     }
 
 
@@ -201,7 +202,7 @@ export default class Three {
                     this.scene.add(gltf.scene);//添加到場景
                     this.loading = false;
                     break;
-                case "pick":
+                case "people":
                     mixer.mixer = new THREE.AnimationMixer(gltf.scene.children[0]);
                     mixer.animes.push(mixer.mixer.clipAction(gltf.animations[0]).setDuration(gltf.animations[0].duration).play())
                     this.mixers.push(mixer);

@@ -187,13 +187,25 @@ export default class Three {
     }
 
     onPointerMove(event) {
-
-        // calculate pointer position in normalized device coordinates
-        // (-1 to +1) for both components
-
         this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
         this.pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+    }
 
+    resetMarterial() {
+        for (let i = 0; i < this.scene.children.length; i++) {
+            if (this.scene.children[i].material) {
+                this.scene.children[i].material.opacity = 1
+            }
+        }
+    }
+    hovering() {
+        this.raycaster.setFromCamera(this.pointer, this.camera)
+        const intersects = this.raycaster.intersectObjects(this.scene.children)
+        for (let i = 0; i < intersects.length; i++) {
+            intersects[i].object.material.material.transparent = true
+            intersects[i].object.material.opacity = 0.5
+
+        }
     }
 
     loadModels() {
@@ -560,6 +572,8 @@ export default class Three {
 
     animate() {
         const dt = 0.01280000000074466;
+        this.resetMarterial()
+        this.hovering()
         this.renderer.setAnimationLoop(this.animate.bind((this)))
         this.world.step(this.timeStep, dt)
         this.controls.update(dt);

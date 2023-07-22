@@ -174,6 +174,7 @@ export default class Three {
         this.npc = [];
         let url = './model/'
         this.modelLoader(url, { x: 1, y: 1, z: 1 }, { x: 0, y: -1.5, z: 0 }, { x: 0, y: 0, z: 0 }, "place", "supermarket");
+        this.modelLoader(url, { x: 8, y: 8, z: 8 }, { x: 2, y: 0.5, z: -4 }, { x: 0, y: 0, z: 0 }, "people", "customer(walking)");
     }
 
 
