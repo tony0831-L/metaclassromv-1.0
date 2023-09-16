@@ -14,11 +14,20 @@ export default defineConfig({
       path: "path-browserify",
     }
   },
+  build: {
+    chunkSizeWarningLimit: 1600,
+  },
   server: {
     host: '0,0,0,0',
-    port : 3000,
+    port : 8000,
   }, 
   define: {
     'process.env': {}
-  }
+  },
+  proxyTable: {
+    '/api': {
+      target: 'http://localhost:3000/',
+      ChangeOrigin: true
+    }
+  },
 })
